@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solicitar Aula</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body>
+    <h1>Solicitar Aula</h1>
+    <form id="solicitarAulaForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required><br><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" required><br><br>
+
+        <label for="disciplina">Disciplina:</label>
+        <input type="text" id="disciplina" required><br><br>
+
+        <button type="button" onclick="enviarEmail()">Solicitar Aula</button>
+    </form>
+
+    <script>
+        function enviarEmail() {
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var disciplina = document.getElementById("disciplina").value;
+
+            Email.send({
+                SecureToken: "3df70c45-5b11-4586-984f-98318a95afb8",
+                To: "salustriano.warcraft@gmail.com", // substitua "x@example.com" pelo e-mail de destino
+                From: "salustriano.warcraft@gmail.com", // substitua "seu_email@example.com" pelo seu e-mail
+                Subject: "Solicitação de Aula",
+                Body: "Nome: " + nome + "<br>Telefone: " + telefone + "<br>Disciplina: " + disciplina
+            }).then(
+                function (message) {
+                    alert("E-mail enviado com sucesso!");
+                }
+            );
+        }
+    </script>
+</body>
+</html>
